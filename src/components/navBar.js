@@ -18,7 +18,10 @@ const Navbar = () => {
                     <li>Discover</li>
                 </ul>
                 <ul className="navbar-end">
-                    <li>SIGN IN</li>
+                    <li>
+                        <Link to={"/register"}>SIGN IN</Link>
+                        
+                    </li>
                 </ul>
             </nav>
         </div>

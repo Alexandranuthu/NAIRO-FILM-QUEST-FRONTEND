@@ -1,12 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom'; // Import Link
 import AppRoutes from './appRoutes';
 import Navbar from './components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import HomePage from './components/HomePage';
+import UserRegistration from './components/UserRegistration';
+import {useState} from 'react'
+import Modal from 'react-modal'
+
 
 function App() {
+  const [showRegistration, setShowRegistration] = useState(false);
+  const openModal = () => setShowRegistration(true);
+  const closeModal = () => setShowRegistration(false);
   return (
     <Router>
       <div className="App">
@@ -35,7 +42,11 @@ function App() {
             <h1>Your Kenyan Film Experience Awaits.</h1>
           </div>
           <div className='getstarted'>
-            <button>JOIN NFQ - IT'S FREE!</button>
+          <button onClick={openModal}>JOIN NFQ - IT'S FREE</button>
+
+              <Modal isOpen={showRegistration} onRequestClose={closeModal}>
+                <UserRegistration showRegistration={showRegistration} closeModal={closeModal}/>
+              </Modal>
           </div>
         </div>
         <HomePage />

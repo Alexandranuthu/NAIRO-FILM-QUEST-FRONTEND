@@ -1,0 +1,31 @@
+/* Update your UserRegistration.css file */
+
+.form {
+    background-color: grey; /* Set the background color of the form */
+    width: 60%; /* Set the desired width, adjust as needed */
+    margin: auto; /* Center the form horizontally */
+    padding: 20px; /* Add padding for better spacing */
+    border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+  }
+  
+  /* Add any additional styles for your form elements */
+  .form-label {
+    color: white; /* Set the label text color */
+  }
+  
+  .form-control {
+    /* Customize the input field styles */
+  }
+  
+  .btn-primary {
+    background-color: blue; /* Change the primary button color */
+    color: white; /* Set text color to white */
+  }
+  
+  .btn-secondary {
+    background-color: grey; /* Change the secondary button color */
+    color: white; /* Set text color to white */
+  }
+  .invalid-feedback{
+    color: red;
+  }

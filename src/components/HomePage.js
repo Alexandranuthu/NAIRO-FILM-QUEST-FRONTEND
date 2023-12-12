@@ -4,6 +4,8 @@ import { VscPreview } from "react-icons/vsc";
 import { MdStarRate } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import Journals from "./Journals";
+import Footer from "./Footer";
+import FilmCard from "./FilmCard";
 
 const HomePage = () => {
   return (
@@ -32,6 +34,12 @@ const HomePage = () => {
 
     <section>
         <Journals />
+    </section>
+    <section>
+      <Footer />
+    </section>
+    <section>
+      <FilmCard />
     </section>
     </>
   );
