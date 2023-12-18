@@ -7,7 +7,7 @@ const FilmCard = () => {
   useEffect(() => {
     const fetchFilms = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/getFilm"); // Replace with your actual backend API endpoint
+        const response = await axios.get("http://localhost:4000/getFilm");
         setFilms(response.data);
       } catch (error) {
         console.error("Error fetching films:", error);
@@ -18,42 +18,34 @@ const FilmCard = () => {
   }, []);
 
   return (
-    <div className="col">
-      <div className="card h-100 w-60">
-        <img src={films.length > 0 ? films[0].poster : ''} className="card-img-top" alt={films.length > 0 ? films[0].title : ''} style={{ width: "300", height: "300" }} />
-        <div className="card-body">
-            <img src={films.poster} alt={films.title}></img>
-          <h5 className="card-title">{films.length > 0 ? films[0].title : ''}</h5>
-          <p className="card-text">{films.length > 0 ? films[0].synopsis : ''}</p>
+    <div className="row row-cols-1 row-cols-md-3 g-4">
+      {films.map((film) => (
+        <div key={film._id} className="col">
+          <div className="card h-100 w-60">
+            <img
+              src={`${process.env.PUBLIC_URL}/Posters/${film.posterImagePath}`}
+              className="card-img-top"
+              alt={film.title}
+              style={{ width: "300", height: "300" }}
+            />
+            <div className="card-body">
+              <h5 className="card-title">{film.title}</h5>
+              <p className="card-text">{film.synopsis}</p>
+            </div>
+            <div className="card-button">
+              <a
+                href={
+                  film.whereToWatch.length > 0
+                    ? film.whereToWatch[0].link
+                    : ""
+                }
+              >
+                WATCH NOW
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="card-button">
-          <a href={films.length > 0 && films[0].whereToWatch.length > 0 ? films[0].whereToWatch[0].link : ''}>WATCH NOW</a>
-        </div>
-      </div>
-
-      <div className="card h-100 w-60">
-        <img src={films.length > 0 ? films[1].poster : ''} className="card-img-top" alt={films.length > 0 ? films[1].title : ''} style={{ width: "300", height: "300" }} />
-        <div className="card-body">
-            <img src={films.poster} alt={films.title}></img>
-          <h5 className="card-title">{films.length > 0 ? films[1].title : ''}</h5>
-          <p className="card-text">{films.length > 0 ? films[1].synopsis : ''}</p>
-        </div>
-        <div className="card-button">
-          <a href={films.length > 0 && films[0].whereToWatch.length > 0 ? films[0].whereToWatch[0].link : ''}>WATCH NOW</a>
-        </div>
-      </div>
-
-      <div className="card h-100 w-60">
-        <img src={films.length > 0 ? films[4].poster : ''} className="card-img-top" alt={films.length > 0 ? films[1].title : ''} style={{ width: "300", height: "300" }} />
-        <div className="card-body">
-            <img src={films.poster} alt={films.title}></img>
-          <h5 className="card-title">{films.length > 0 ? films[4].title : ''}</h5>
-          <p className="card-text">{films.length > 0 ? films[4].synopsis : ''}</p>
-        </div>
-        <div className="card-button">
-          <a href={films.length > 0 && films[0].whereToWatch.length > 0 ? films[0].whereToWatch[0].link : ''}>WATCH NOW</a>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
