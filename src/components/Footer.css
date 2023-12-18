@@ -1,0 +1,29 @@
+/* Footer.css */
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: grey;
+    padding: 10px;
+    height: auto; /* Change to auto to allow content to dictate height */
+}
+
+.about-section,
+.API-section,
+.icons-section {
+    margin: 0 10px;
+}
+
+.icons-section {
+    display: flex;
+}
+
+.icons-section div {
+    margin-right: 10px;
+}
+
+.footer-paragraph {
+    margin-top: 10px;
+    text-align: center; /* Center the text */
+}

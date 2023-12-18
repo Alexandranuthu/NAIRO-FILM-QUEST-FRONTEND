@@ -11,7 +11,7 @@ const Navbar = () => {
                 </div>
                 <ul className="navbar-start">
                     <li>
-                        <Link to={"/"}>Home</Link>
+                        <Link to={"/"} style={{ textDecoration: 'none', color: 'white' }}>Home</Link>
                     </li>
                     <li>Shows</li>
                     <li>Movies</li>
@@ -19,7 +19,7 @@ const Navbar = () => {
                 </ul>
                 <ul className="navbar-end">
                     <li>
-                        <Link to={"/register"}>SIGN IN</Link>
+                        <Link to={"/register"} style={{ textDecoration: 'none', color: 'white' }}>SIGN IN</Link>
                         
                     </li>
                 </ul>

@@ -74,6 +74,11 @@ link{
   border-radius: 5px;
   cursor: pointer;
 }
+.getstarted{
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
 .highlights {
   background-color: pink;
   padding: 10px; /* Adjust the overall padding as needed */
@@ -112,6 +117,10 @@ link{
   font-family:'Playfair Display' ;
   font-weight: bolder;
 }
+.track:hover{
+  background-color: grey;
+}
+
 
 
 
