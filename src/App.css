@@ -9,7 +9,6 @@
   align-items: center;
   height: 100%; /* Ensure the container takes full height */
 }
-
 .navbar {
   background-color: transparent;
   cursor: pointer;
@@ -92,6 +91,7 @@ link{
   flex-direction: row; /* Stack items vertically */
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 .highlight-item {
@@ -120,7 +120,116 @@ link{
 .track:hover{
   background-color: grey;
 }
+.card.journal {
+  text-align: left;
+}
 
+.card.journal .card-title,
+.card.journal .card-text {
+  text-align: left;
+}
+/* Additional styling for the film card section */
+.film-card-section {
+  margin-top: 20px; /* Adjust the margin-top as needed */
+  margin-bottom: 30px;
+}
+
+/* Additional styling for the journals section */
+.section.journal {
+  margin-top: 20px; /* Adjust the margin-top as needed */
+}
+
+/* Additional styling for the footer section */
+.section.footer {
+  margin-top: 2px; /* Adjust the margin-top as needed */
+}
+
+/* AccountSetup.css */
+.welcome-tag , .setup-information{
+  color: #fff;
+  font-size: medium;
+}
+.avatar-container {
+  position: relative;
+  width: 250px; /* Adjust the size of the avatar */
+  height: 250px; /* Adjust the size of the avatar */
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.overlay:hover {
+  opacity: 1;
+}
+
+.overlay svg {
+  margin-bottom: 5px;
+}
+.form.setup{
+  background-color: #EA0085;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+.form-label-setup{
+  color: #FFD700;
+  margin-right: 10px;
+  align-items: center;
+  float: left;
+}
+
+
+/* Add styling for the submit button */
+.form.setup button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  background-color: #FFD700;
+}
+.form.setup input{
+  border: none;
+  background-color: transparent;
+
+}
+.birthday-container {
+  display: flex;
+  align-items: center;
+}
+
+.birthday-select {
+  display: flex;
+  gap: 10px;
+}
+.btn{
+  background-color: #FFD700;
+}
 
 
 

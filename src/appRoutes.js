@@ -4,6 +4,7 @@ import HomePage from "./components/HomePage";
 import KeepTrack from "./components/KeepTrack";
 import AccountSetup from "./components/AccountSetup";
 import Login from "./components/Login";
+import NairoFilmQuest from "./components/NairoFilmQuest";
 
 const AppRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
       <Route path="/keepTrack" element={<KeepTrack />} />
       <Route  path="/AccountSetup" element={<AccountSetup />}/>
       <Route path="/Login" Component={Login}/>
+      <Route path="/NairoFilmQuest" element={<NairoFilmQuest/>} />
     </Routes>
   );
 };

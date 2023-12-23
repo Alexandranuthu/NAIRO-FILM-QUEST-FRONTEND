@@ -15,7 +15,7 @@ const HomePage = () => {
     <section>
       <HomeLayout />
     </section>
-    <section className="highlights">
+    <section className=" section highlights">
         <h2>NFQ ALLOWS YOU TO ...</h2>
       <div className="carousel">
         <div className="highlight-item track">
@@ -48,15 +48,15 @@ const HomePage = () => {
         </div>
       </div>
     </section>
-
-    <section>
-        <Journals />
-    </section>
-    <section>
+    <section className="section film-card-section">
       <FilmCard />
     </section>
+    <section className="section journals-section">
+        <Journals />
+    </section>
     
-    <section>
+    
+    <section className="section footer">
       <Footer />
     </section>
     </>

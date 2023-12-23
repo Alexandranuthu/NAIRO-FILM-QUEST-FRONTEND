@@ -1,0 +1,30 @@
+.navbar-official{
+    background-color: black;
+    opacity: 0.9;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 40px;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+  }
+  
+.profile{
+    .options{
+        display: none;
+    }
+    span{
+        cursor: pointer;
+        padding: 10px;
+    }
+    &:hover {
+        .options{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+        }
+    }
+}
