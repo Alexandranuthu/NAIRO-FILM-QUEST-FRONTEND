@@ -230,6 +230,23 @@ link{
 .btn{
   background-color: #FFD700;
 }
+/* Films.css */
+/* Films.css */
+.films-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; /* Set flex direction to row */
+  justify-content: space-between; /* Adjust as needed */
+}
+
+.film-item {
+  flex-basis: calc(30% - 10px); /* Adjust as needed, subtracting margin */
+  margin-bottom: 20px; /* Adjust as needed */
+}
+.film-posters{
+  width: 300px;
+  height: 250px ;
+}
 
 
 

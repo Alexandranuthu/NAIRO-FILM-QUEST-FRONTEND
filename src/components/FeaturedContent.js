@@ -5,6 +5,7 @@ import { IoTime } from "react-icons/io5";
 import { Carousel } from 'react-responsive-carousel';
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import "./NairoFilmQuest.css";
+import {useEffect, useState} from "react";
 
 
 const FeaturedContent = () => {
@@ -19,10 +20,30 @@ const FeaturedContent = () => {
             <span><FaChevronCircleRight size={35}/></span>
         </button>
     );
+    const [filmList, setFilmList] = useState([]);
+
+  useEffect(() => {
+    // Fetch films based on the search term
+    const fetchFilms = async () => {
+      try {
+        const url = `http://localhost:4000/getFilms/:id`;
+        const response = await fetch(url);
+        const json = await response.json();
+        setFilmList(json.data);
+      } catch (error) {
+        console.error('Error fetching films:', error);
+      }
+    };
+
+    fetchFilms();
+  }, []);
 
     return(
         <>
             <div className="feautured-content">
+                {filmList.map((film)=> (
+
+                
                 <div className="content">
                     <Carousel showArrows={true}
                         renderArrowPrev={CustomPrevArrow}
@@ -31,7 +52,7 @@ const FeaturedContent = () => {
                         showStatus={false}
                         showIndicators={false} // Disable the little dots
                         width="80%" // Set the width of the carousel
-    infiniteLoop={true}
+                        infiniteLoop={true}
                     className="carousel">
                     <div className="content one">
                         <img src="images/40sticks.jpg" alt="40 sticks" style={{ height: '80%' }} />
@@ -92,6 +113,7 @@ const FeaturedContent = () => {
                     </Carousel>
                     
                 </div>
+                ))}
             </div>
         </>
     )

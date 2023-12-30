@@ -1,5 +1,6 @@
 body{
-    background-color: #14181c;
+    background-color: #141414 !important;
+
 }
 .content img{
     max-width: 100%;
@@ -20,8 +21,12 @@ body{
 .featured-content{
     display: flex;
     justify-content: center;
+    flex-direction: row;
   align-items: center;
   margin-top: 50px;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 100%;
 }
 
 .content{
@@ -82,6 +87,41 @@ body{
     top: 50%;
     transform: translateY(-50%);
 }
+ .film-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px;
+  gap: 30px;
+  width: 300px;
+  opacity: 0.8;
+  cursor: pointer; /* Corrected class name and added cursor property */
+  margin: 10px; /* Adjust margin as needed */
+  transition: opacity 0.3s; /* Add transition for opacity change */
+}
+.film-item{
+    position: relative; /* Ensure relative positioning for absolute child elements */
+    background-color: pink;
+    border-radius: 10px;
+    backdrop-filter: blur(4px); /* Use backdrop-filter for blur effect */
+    border: 2px solid transparent;
+    border-width: 10px;
+    color: white;
+    
+  align-items: center;
+}
+.film-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px; /* Same border-radius as parent for rounded corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s;
+  }
+
 
 
 

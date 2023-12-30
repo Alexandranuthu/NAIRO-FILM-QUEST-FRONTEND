@@ -16,7 +16,11 @@ const NavbarOfficial = () => {
                         <Link to={"/"} style={{ textDecoration: 'none', color: 'white' }}>Home</Link>
                     </li>
                     <li>Shows</li>
-                    <li>Movies</li>
+                    <li>
+                        <Link to={"/all-films"}>
+                        FILMS
+                        </Link>
+                        </li>
                     <li>Discover</li>
                 </ul>
                 <ul className="navbar-end">
@@ -28,6 +32,9 @@ const NavbarOfficial = () => {
                     <div className="profile">
                         < MdOutlineArrowDropDownCircle  style={{ color: 'white' }}/>
                         <div className="options">
+                            <Link to="/User-Profile">
+                            <span>Profile</span>
+                            </Link>
                             <span>Settings</span>
                             <span>Logout</span>
                         </div>
