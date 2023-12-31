@@ -8,6 +8,7 @@ import NairoFilmQuest from "./components/NairoFilmQuest";
 import Films from "./components/films";
 import FilmDetails from "./components/FilmDetails";
 import UserProfile from "./components/UserProfile";
+import SingleFilm from "./components/SingleFilm";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Route path="/all-films" element={<Films/>}/>
       <Route path="/film-Details" element={<FilmDetails/>}/>
       <Route path="/User-Profile" element={<UserProfile/>}/>
+      <Route path="film/:id" element={<SingleFilm/>} />
     </Routes>
   );
 };

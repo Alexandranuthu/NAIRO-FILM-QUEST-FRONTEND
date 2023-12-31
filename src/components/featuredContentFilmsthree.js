@@ -26,7 +26,7 @@ const Films = () => {
     <>
       <div className="film-container">
         {filmList.map((film) => (
-          <Link to={`/film-Details/${film._id}`} key={film._id} className="film-item">
+          <Link to={`/film/${film.id}`} key={film._id} className="film-item">
             <img src={`http://localhost:3000${film.posterImagePath}`} alt={`Poster for ${film.title}`} className="film-posters" />
             <div>
               <h2 style={{ color: "black" }}>{film.title}</h2>

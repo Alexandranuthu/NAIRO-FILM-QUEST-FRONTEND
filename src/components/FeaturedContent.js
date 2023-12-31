@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 
 
 const FeaturedContent = () => {
+
     const CustomPrevArrow = (onClickHandler, hasPrev, label) => (
         <button type="button" onClick={onClickHandler} disabled={!hasPrev} aria-label={label} className="custom-arrow custom-prev-arrow">
             <span><FaChevronCircleLeft size={35} /></span>
@@ -20,28 +21,13 @@ const FeaturedContent = () => {
             <span><FaChevronCircleRight size={35}/></span>
         </button>
     );
-    const [filmList, setFilmList] = useState([]);
+    
 
-  useEffect(() => {
-    // Fetch films based on the search term
-    const fetchFilms = async () => {
-      try {
-        const url = `http://localhost:4000/getFilms/:id`;
-        const response = await fetch(url);
-        const json = await response.json();
-        setFilmList(json.data);
-      } catch (error) {
-        console.error('Error fetching films:', error);
-      }
-    };
-
-    fetchFilms();
-  }, []);
+  
 
     return(
         <>
             <div className="feautured-content">
-                {filmList.map((film)=> (
 
                 
                 <div className="content">
@@ -113,7 +99,6 @@ const FeaturedContent = () => {
                     </Carousel>
                     
                 </div>
-                ))}
             </div>
         </>
     )
