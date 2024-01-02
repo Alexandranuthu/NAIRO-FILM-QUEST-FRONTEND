@@ -3,21 +3,21 @@ import { useState, useEffect} from "react";
 import axios from "axios";
 
 
-const UserProfile = () => {
-    const [user, setUser] = useState("");
+const UserProfile = ({userId}) => {
+    const [user, setUser] = useState(null);
 
     useEffect(() =>{
         const fetchUserProfile = async () => {
             try {
-                const userId = '65636babfa0ab18dd52cd238'
-                const response = axios.get(`http://localhost:4000/getUser/${userId}`)
+                const response = await axios.get(`http://localhost:4000/getUser/${userId}`);
+                console.log('api response:', response)
                 setUser(response.data);
             }catch(error) {
-                console.error(error);
+                console.error('error fetching user profile',error);
             }
         };
         fetchUserProfile();
-    }, []);
+    }, [userId]);
 
     if (!user) {
         return <div>Loading...</div>

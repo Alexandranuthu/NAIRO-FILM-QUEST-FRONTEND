@@ -10,7 +10,7 @@ const UserRegistration = ({ showRegistrationModal, closeRegistrationModal }) => 
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://localhost:4000/register', data);
+      const response = await axios.post('http://localhost:4000/register/addUserStep1', data);
 
       if (response.status === 200) {
         const { accessToken, refreshToken } = response.data;

@@ -9,6 +9,7 @@ import Films from "./components/films";
 import FilmDetails from "./components/FilmDetails";
 import UserProfile from "./components/UserProfile";
 import SingleFilm from "./components/SingleFilm";
+import WatchList from "./components/Watchlist";
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = () => {
       <Route path="/film-Details" element={<FilmDetails/>}/>
       <Route path="/User-Profile" element={<UserProfile/>}/>
       <Route path="film/:id" element={<SingleFilm/>} />
+      <Route path="/watchlist" element={<WatchList/>}/>
     </Routes>
   );
 };

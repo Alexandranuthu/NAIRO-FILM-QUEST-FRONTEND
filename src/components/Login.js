@@ -1,11 +1,16 @@
 import { useForm } from "react-hook-form";
 import axios from 'axios';
-import React from "react";
+import React, { useEffect } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useState } from "react";
 
 
-const Login = ({ showRegistration, closeLoginModal }) =>{
+
+
+const Login = ({ showRegistration, closeLoginModal}) =>{
   const { register, handleSubmit, setError, formState: { errors } } = useForm();
+  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -14,20 +19,27 @@ const Login = ({ showRegistration, closeLoginModal }) =>{
         email: data.email,
         password: data.password
       });
-  
-      console.log('Login Response:', response);
+      
+
+      
   
       if (response.status === 200) {
-        const { accessToken, refreshToken } = response.data;
-  
+        const { user,userId,accessToken, refreshToken } = response.data;
+       
+        console.log('response from server', response.data);
         // Check if tokens are present
         if (accessToken && refreshToken) {
           // Save tokens in session storage
           sessionStorage.setItem('access_token', accessToken);
           sessionStorage.setItem('refresh_token', refreshToken);
-  
-          // Redirect to the dashboard
-          window.location.href = '/NairoFilmQuest'; // change the URL to your desired route
+
+          sessionStorage.setItem('userId', user.userId);
+          setUser(user);
+          setIsLoggedIn(true);
+
+          console.log('user has logged in successfully', user);
+          // window.location.href= ('/NairoFilmQuest');
+
         } else {
           // If tokens are not present, treat it as an error
           console.log('Login failed:', 'Tokens not present');
@@ -49,12 +61,33 @@ const Login = ({ showRegistration, closeLoginModal }) =>{
     }
   };
 
+  useEffect(() => {
+    console.log('useEffect triggered. isLoggedIn:', isLoggedIn, 'user:', user);
 
+    if (isLoggedIn && user) {
+      console.log('Setting userId in sessionStorage. User ID:', user._id);
+      // Check if user is available before setting userId
+      sessionStorage.setItem('userId', user._id);
+      
+      setTimeout(() => {
+        console.log('logged in user:', user.username);
+        console.log('User ID stored in session storage:', user._id);
+  
+        window.location.href = '/NairoFilmQuest';
+      });
+    }
+  }, [isLoggedIn, user]);
+  
   return (
     <>
     <div className="form-captain" >
         {showRegistration && (
           <div className="registration-container">
+            {isLoggedIn ? (
+              <div>
+                <h2>Welcome, {user.username}!</h2>
+              </div>
+            ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="form" style={{ backgroundColor: '#EA0085' }}>
               <h2 className="mb-4">JOIN NFQ</h2>
 
@@ -124,9 +157,9 @@ const Login = ({ showRegistration, closeLoginModal }) =>{
                 LOGIN
               </button>
             </form>
-
+            )}
             {/* Close Button */}
-            <button type="button" className="btn btn-secondary" onClick={closeLoginModal}>
+            <button type="button" className="btn btn-secondary" onClick={() => closeLoginModal(setUser)}>
               <IoIosCloseCircleOutline />
             </button>
           </div>

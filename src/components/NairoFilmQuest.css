@@ -90,6 +90,7 @@ body{
  .film-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    width: 100%;
     max-width: 900px;
     margin: 0 auto;
     padding: 50px;
@@ -102,14 +103,14 @@ body{
 }
 .film-item{
     position: relative; /* Ensure relative positioning for absolute child elements */
-    background-color: pink;
     border-radius: 10px;
     backdrop-filter: blur(4px); /* Use backdrop-filter for blur effect */
     border: 2px solid transparent;
     border-width: 10px;
     color: white;
-    
-  align-items: center;
+    align-items: center;
+    overflow: hidden; /* Ensure border transition covers the whole container */
+  transition: transform 0.3s;
 }
 .film-item::before {
     content: "";
@@ -120,6 +121,36 @@ body{
     justify-content: center;
     align-items: center;
     transition: opacity 0.3s;
+  }
+.film-item:hover .film-posters-featured{
+    border: 2px solid gray;
+    transform: scale(1.1);
+}
+  .film-posters-featured{
+    width: 250px;
+    height: 300px;
+  }
+  .film-title{
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    z-index: 1;
+  }
+  .release-year{
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .film-item:hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid gray;
+    transition: border 0.3s;
   }
 
 

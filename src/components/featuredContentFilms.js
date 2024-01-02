@@ -26,15 +26,17 @@ const Films = () => {
     <>
       <div className="film-container">
         {filmList.map((film) => (
-          <Link to={`/film/${film._id}`} key={film._id} className="film-item">
-            <img src={`http://localhost:3000${film.posterImagePath}`} alt={`Poster for ${film.title}`} className="film-posters" />
+          <div className="featured-items">
+          <Link to={`/film/${film._id}`} style={{ textDecoration: 'none',}} key={film._id} className="film-item">
+            <img src={`http://localhost:3000${film.posterImagePath}`} alt={`Poster for ${film.title}`} className="film-posters-featured" />
             <div>
-              <h2 style={{ color: "black" }}>{film.title}</h2>
+              <h2 className="film-title">{film.title}</h2>
             </div>
-            <div>
-              {film.cast}
+            <div className="release-year">
+              {film.releaseyear}
             </div>
           </Link>
+          </div>
         ))}
       </div>
     </>
