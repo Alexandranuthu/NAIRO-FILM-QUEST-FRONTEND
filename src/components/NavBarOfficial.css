@@ -28,3 +28,15 @@
         }
     }
 }
+.log{
+    border: none;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.log, button{
+    font-weight: bold;
+    background-color: #EA0085;
+}

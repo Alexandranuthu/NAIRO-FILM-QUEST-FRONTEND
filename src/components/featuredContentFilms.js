@@ -2,15 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./NairoFilmQuest.css";
+import SearchIcon from "./Searchicon";
 
 const Films = () => {
   const [filmList, setFilmList] = useState([]);
 
   useEffect(() => {
     // Fetch films based on the search term
-    const fetchFilms = async () => {
+    const fetchFilms = async (searchKey) => {
       try {
-        const url = `http://localhost:4000/getFilms`;
+        const url = `http://localhost:4000/getFilms${searchKey ? `?search=${searchKey}` : ''}`;
         const response = await fetch(url);
         const json = await response.json();
         setFilmList(json.data);

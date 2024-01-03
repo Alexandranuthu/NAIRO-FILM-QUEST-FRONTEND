@@ -1,0 +1,20 @@
+.circular-rating {
+    width: 30px;
+    height: 30px;
+    background-color: #ffd700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 2px solid green;
+    gap: 30px;
+  }
+  
+  .rating-value {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  

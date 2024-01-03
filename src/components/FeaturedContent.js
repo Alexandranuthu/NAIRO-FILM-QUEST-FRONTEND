@@ -6,10 +6,27 @@ import { Carousel } from 'react-responsive-carousel';
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import "./NairoFilmQuest.css";
 import {useEffect, useState} from "react";
+import Rating from './Rating';
+import { FaCirclePlay } from "react-icons/fa6";
 
 
 const FeaturedContent = () => {
+    const [filmList, setFilmList] = useState([]);
 
+    useEffect(() => {
+        const fetchFilms = async () => {
+            try {
+                const url = "http://localhost:4000/getFilms";
+                const response = await fetch(url);
+                const json = await response.json();
+                setFilmList(json.data);
+            } catch (error) {
+                console.error('Error fetching films:', error);
+            }
+        };
+
+        fetchFilms();
+    }, []);
     const CustomPrevArrow = (onClickHandler, hasPrev, label) => (
         <button type="button" onClick={onClickHandler} disabled={!hasPrev} aria-label={label} className="custom-arrow custom-prev-arrow">
             <span><FaChevronCircleLeft size={35} /></span>
@@ -22,12 +39,25 @@ const FeaturedContent = () => {
         </button>
     );
     
+    const shuffle = (array) => {
+        // Fisher-Yates shuffle algorithm
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    };
 
+    // Shuffle the filmList array
+    const shuffledFilms = shuffle(filmList);
+
+    // Slice the first six films
+    const firstSixFilms = shuffledFilms.slice(0, 6);
   
 
     return(
         <>
-            <div className="feautured-content">
+            <div className="featured-content">
 
                 
                 <div className="content">
@@ -37,10 +67,54 @@ const FeaturedContent = () => {
                         showThumbs={false}
                         showStatus={false}
                         showIndicators={false} // Disable the little dots
-                        width="80%" // Set the width of the carousel
+                        width="100%" // Set the width of the carousel
+                        height= "90vh"
                         infiniteLoop={true}
                     className="carousel">
-                    <div className="content one">
+                        
+                        {firstSixFilms.map((film, index) => (
+    <div className="content" key={index}>
+        <div className="image-container">
+            <img src={`http://localhost:3000${film.posterImagePath}`} alt={`Poster for ${film.title}`} className="featured-posters" />
+        </div>
+        
+        <div className="info">
+            <h2 className="typography">{film.title}</h2>
+            <div className="analytics">
+            <span className="runtime"><IoTime color="#EA0085" size={30} />{film.runtime}</span>
+            {
+                film.ratings && film.ratings.length > 0 && (
+                    <div className="ratings">
+                        {film.ratings.map((rating, ratingsIndex)=>(
+                            <Rating key={ratingsIndex} rating={rating}>
+                                
+                            </Rating>
+                        ))}
+                        </div>
+                )
+            }
+            </div>
+            
+            <p className="desc">{film.synopsis}</p>
+            
+            {
+                film.trailers && film.trailers.length > 0 && (
+                    <div className="trailers">
+                        {film.trailers.map((trailer, trailerIndex)=>(
+                            <button key={trailerIndex} onClick={() => window.open(trailer.link, "_blank")} className="trailers">
+                               <FaCirclePlay size={30} color="black"/> Watch Trailer
+                            </button>
+                        ))}
+                        </div>
+                )
+            }
+            
+        </div>
+    </div>
+))}
+
+                        
+                    {/* <div className="content one">
                         <img src="images/40sticks.jpg" alt="40 sticks" style={{ height: '80%' }} />
                         <div className="info">
                         <img src="imagetext/40sticks.png" className="imagetext" style={{ width: '250px' }} alt="40sticks-text"/>
@@ -95,7 +169,7 @@ const FeaturedContent = () => {
                         he seeks their guidance to kickstart his own aspiring acting career.
                         </p>
                         </div>
-                    </div>
+                    </div> */}
                     </Carousel>
                     
                 </div>

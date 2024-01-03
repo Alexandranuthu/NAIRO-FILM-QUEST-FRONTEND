@@ -3,6 +3,7 @@ import SearchIcon from "./Searchicon";
 import { Link } from "react-router-dom";
 import "./NavBarOfficial.css";
 import { MdOutlineArrowDropDownCircle } from "react-icons/md";
+import { BsBookmarkPlus } from "react-icons/bs";
 
 const NavbarOfficial = () => {
     return(
@@ -24,6 +25,12 @@ const NavbarOfficial = () => {
                     <li>Discover</li>
                 </ul>
                 <ul className="navbar-end">
+                    <Link to='/watchlist'>
+                    <button className="log">
+                    <BsBookmarkPlus size={25}/>ADD
+                    </button>
+                    </Link>
+                    
                     <li>
                         <Link to={"/register"} style={{ textDecoration: 'none', color: 'white' }}>SIGN IN</Link>
                         

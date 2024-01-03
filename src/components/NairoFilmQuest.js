@@ -5,6 +5,7 @@ import NavbarOfficial from "./navbarOfficial";
 import FeaturedContentFilms from "./featuredContentFilms";
 import WelcomeMessage from "./WelcomeMessage";
 import { useState } from "react";
+import List from "./List";
 
 const NairoFilmQuest = () => {
   const [user, setUser] = useState(null);
@@ -12,12 +13,15 @@ const NairoFilmQuest = () => {
     <>
       <div className="Nairo-Film-Quest">
         <NavbarOfficial />
-        <WelcomeMessage user={user}/>
+        <WelcomeMessage/>
         <div className="featured-content">
             <FeaturedContent />
         </div>
         <div>
           <FeaturedContentFilms/>
+        </div>
+        <div>
+          <List />
         </div>
       </div>
     </>

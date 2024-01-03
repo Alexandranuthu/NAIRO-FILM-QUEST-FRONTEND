@@ -4,38 +4,21 @@ import { useParams } from "react-router-dom";
 import "./SingleFilm.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 
-const SingleFilm = ({addToWatchlist}) => {
+
+const SingleFilm = () => {
     const { id } = useParams();
     const [film, setFilm] = useState(null);
-    const [watchlistAdditionStatus, setWatchlistAdditionStatus] = useState(null);
     const navigate = useNavigate();
+    const {
+        addMovieToWatchlist, watchlist
+    } = useContext(GlobalContext);
 
-    const handleAddToWatchlist = async (filmId,e) => {
-        e.preventDefault();
-  
-    try {
-      // Log the constructed API URL
-      const apiUrl = `http://localhost:4000/Watchlist/post`;
-      const response = await axios.post(apiUrl, {filmId});
-  
-      // Log the response for debugging
-      console.log("Server Response:", response);
-  
-      if (response.status === 200) {
-        console.log('Film Added Successfully to watchlist');
-        setWatchlistAdditionStatus('success');
-        // Redirect to your desired route after successful upload
-        navigate ('/watchlist')
-      } else  {
-        console.error('Failed to add film to watchlist');
-        setWatchlistAdditionStatus('error');
-      }
-    } catch (error) {
-      console.error('Error adding to watchlist:', error);
-      setWatchlistAdditionStatus('error');
-    }
-    }
+    let storedMovie = watchlist.find(o => o.id === film.id)
+
+    const watchlistDisabled = storedMovie ? true : false;
 
     useEffect(() => {
         const fetchFilm = async () => {
@@ -57,13 +40,15 @@ const SingleFilm = ({addToWatchlist}) => {
 
     return (
         <>
-        <button onClick={(e) => handleAddToWatchlist(film._id, e)}>Add to Watchlist</button>
-        {watchlistAdditionStatus === 'success' && (
+        <button key={film._id} 
+        disabled = {watchlistDisabled}
+        onClick={() => addMovieToWatchlist(film)}>Add to Watchlist</button>
+        {/* {watchlistAdditionStatus === 'success' && (
             <div style={{ color: 'green' }}>Film added to watchlist successfully</div>
         )}
         {watchlistAdditionStatus === 'error' && (
             <div style={{ color: 'red' }}>Failed to add film to watchlist</div>
-        )}
+        )} */}
             <div className="film-details">
                 <div className="film-backdrop">
                     <img
@@ -86,7 +71,7 @@ const SingleFilm = ({addToWatchlist}) => {
                 <p>Directed By{film.director}</p>
                 <p>{film.synopsis}</p>
                 <span className="runtime"><IoTime color="#EA0085" size={40} />{film.runtime}</span>
-                <p>{film.genre}</p>
+                <p>Genres: {film.genre.map(g => g.name).join(', ')}</p>
                 <p>{film.cast}</p>
             </div>
                 

@@ -1,52 +1,69 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { FaSearchengin } from "react-icons/fa";
-import featuredContentFilms from "./featuredContentFilmsthree" // Make sure to import your MediaApi module
+import axios from "axios"; // Import Axios
+import { Link } from "react-router-dom";
 
-const SearchIcon = () => {
-  // const [query, setQuery] = useState("");
-  // const [onSearch, setOnSearch] = useState(false);
-  // const [mediaType, setMediaType] = useState("your_default_media_type");
-  // const [medias, setMedias] = useState([]);
-  // const [page, setPage] = useState(1);
+import "./Searchicon.css";
 
-  // const handleSearch = useCallback(async () => {
-  //   setOnSearch(true);
+const SearchIcon = ( ) => {
+  const [searchKey, setSearchKey] = useState("");
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  //   try {
-  //     const { response, err } = await featuredContentFilms.search({
-  //       mediaType,
-  //       query,
-  //       page,
-  //     });
+  const onChange = async (e) => {
+    e.preventDefault();
+    setSearchKey(e.target.value);
 
-  //     if (response) {
-  //       setMedias(response.data); // Update the state with the fetched data
-  //     } else {
-  //       console.error("Error fetching media:", err);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during search:", error);
-  //   } finally {
-  //     setOnSearch(false);
-  //   }
-  // }, [mediaType, query, page]);
+    try {
+      setLoading(true);
+      const response = await axios.get(`http://localhost:4000/search?q=${e.target.value}`);
+      console.log('Response:', response);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   handleSearch();
-  // };
+      if (response.status === 200) {
+        const data = response.data;
+        console.log('Data:', data);
+        setResults(data.data);
+      } else {
+        console.error('Error:', response.status, response.statusText);
+        setResults([]);
+      }
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+      setResults([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // You can perform additional actions if needed
+  };
 
   return (
     <div className="search-icon">
-      <form>
-        <FaSearchengin size={32} color="white" />
+      <form onSubmit={onSubmit}>
         <input
           type="text"
+          value={searchKey}
+          onChange={onChange}
+          placeholder="Search for Films..."
         />
         <button type="submit">
-          SEARCH!
+          <FaSearchengin size={25} className="icon" />
         </button>
       </form>
+      {results.length > 0 && (
+        <div className="results">
+          {results.map((film) => (
+            <div key={film._id}>
+              <Link to={`/film/${film._id}`}>
+              <p>{film.title}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -10,9 +10,12 @@ import FilmDetails from "./components/FilmDetails";
 import UserProfile from "./components/UserProfile";
 import SingleFilm from "./components/SingleFilm";
 import WatchList from "./components/Watchlist";
+import Watched from "./components/Watched";
+import {GlobalProvider} from "./context/GlobalState";
 
 const AppRoutes = () => {
   return (
+    <GlobalProvider>
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/keepTrack" element={<KeepTrack />} />
@@ -24,7 +27,9 @@ const AppRoutes = () => {
       <Route path="/User-Profile" element={<UserProfile/>}/>
       <Route path="film/:id" element={<SingleFilm/>} />
       <Route path="/watchlist" element={<WatchList/>}/>
+      <Route path='/watched' element={<Watched/>}/>
     </Routes>
+    </GlobalProvider>
   );
 };
 
