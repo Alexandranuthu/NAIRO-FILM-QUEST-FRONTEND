@@ -7,15 +7,25 @@ const FilmDetails = ({ match }) => {
   const [filmDetails, setFilmDetails] = useState(null);
 
   useEffect(() => {
-    const getFilmDetails = () => {
-      fetch(`http://localhost:4000/getFilmDetails/${filmId}`)
-        .then(res => res.json())
-        .then(json => setFilmDetails(json.data))
-        .catch(error => console.error('Error fetching film details:', error));
-    }
-
+    const getFilmDetails = async () => {
+      try {
+        const accessToken = sessionStorage.getItem('access_token');
+        const response = await fetch(`http://localhost:4000/getFilmDetails/${filmId}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        const json = await response.json();
+        setFilmDetails(json.data);
+      } catch (error) {
+        console.error('Error fetching film details:', error);
+      }
+    };
+  
     getFilmDetails();
   }, [filmId]);
+  
 
   return (
     <>

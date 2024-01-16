@@ -1,0 +1,108 @@
+.film-container-all{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Adjust the number of columns for smaller screens */
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px; /* Reduce padding for smaller screens */
+  gap: 15px; /* Reduce gap for smaller screens */
+  opacity: 0.8;
+  cursor: pointer;
+  margin: 10px;
+  transition: opacity 0.3s;
+}
+
+.film-item-all:hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid gray; */
+    transition: border 0.3s;
+  }
+  .film-title-all{
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    z-index: 1;
+    text-align: left; 
+    margin-top: 10px; 
+    text-align: center;
+  }
+  .film-item-all{
+    position: relative; /* Ensure relative positioning for absolute child elements */
+    border-radius: 10px;
+    backdrop-filter: blur(4px); /* Use backdrop-filter for blur effect */
+    border: 2px solid transparent;
+    border-width: 10px;
+    color: white;
+    align-items: center;
+    overflow: hidden; /* Ensure border transition covers the whole container */
+  transition: transform 0.3s;
+  }
+  
+.film-item-all::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px; /* Same border-radius as parent for rounded corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s;
+  }
+.film-item-all:hover .film-posters-featured{
+    /* border: 2px solid gray; */
+    transform: scale(1.1);
+}
+.film-posters-all{
+    width: 100%;
+    height: 300px;
+  }
+  /* .trailer-all{
+    border: none;
+    width: 100px;
+    height: 40px;
+    font-weight: 700;
+    background-color: #EA0085;
+    border-radius: 10px;
+    color: white;
+  } */
+  .watch-all{
+    display: flex;
+    gap: 10px;
+  }
+.whereToWatch-all{
+    color: white;
+    background-color: #EA0085;
+    border-radius: 4px;
+    width: 200px;
+    height: 100px;
+    font-size: medium;
+    text-decoration: none;
+}
+.watch-film{
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+
+/* Responsive styles for medium-sized screens */
+@media screen and (min-width: 600px) {
+  .film-container-all {
+      grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns for medium screens */
+  }
+}
+
+/* Responsive styles for larger screens */
+@media screen and (min-width: 900px) {
+  .film-container-all {
+      grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -12,10 +12,10 @@ import HomeLayout from "./HomeLayout";
 const HomePage = () => {
   return (
     <>
-    <section>
+    <section id="home">
       <HomeLayout />
     </section>
-    <section className=" section highlights">
+    <section className=" section highlights" id="features">
         <h2>NFQ ALLOWS YOU TO ...</h2>
       <div className="carousel">
         <div className="highlight-item track">
@@ -51,12 +51,12 @@ const HomePage = () => {
     <section className="section film-card-section">
       <FilmCard />
     </section>
-    <section className="section journals-section">
+    <section className="section journals-section" id="journals">
         <Journals />
     </section>
     
     
-    <section className="section footer">
+    <section className="section footer" id="about">
       <Footer />
     </section>
     </>

@@ -1,4 +1,3 @@
-// Films.js
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./NairoFilmQuest.css";
@@ -8,11 +7,17 @@ const Films = () => {
   const [filmList, setFilmList] = useState([]);
 
   useEffect(() => {
-    // Fetch films based on the search term
+    const accessToken = sessionStorage.getItem('access_token');
     const fetchFilms = async (searchKey) => {
       try {
         const url = `http://localhost:4000/getFilms${searchKey ? `?search=${searchKey}` : ''}`;
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            },
+        });
         const json = await response.json();
         setFilmList(json.data);
       } catch (error) {
@@ -21,7 +26,8 @@ const Films = () => {
     };
 
     fetchFilms();
-  }, []);
+}, []); // Ensure that accessToken is included in the dependency array
+
 
   return (
     <>

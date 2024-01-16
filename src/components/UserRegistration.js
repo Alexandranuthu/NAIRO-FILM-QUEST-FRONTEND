@@ -4,31 +4,53 @@ import axios from "axios";
 import "./UserRegistration.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const UserRegistration = ({ showRegistrationModal, closeRegistrationModal }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch, } = useForm();
+  const [registrationError, setRegistrationError] = useState("");
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://localhost:4000/register/addUserStep1', data);
-
+      if (data.password !== data.confirmPassword) {
+        console.error('Password and confirm Password do not match');
+        return;
+      }
+  
+      const accessToken = sessionStorage.getItem('access_token');
+  
+      const response = await axios.post('http://localhost:4000/register/addUserStep1', data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+  
       if (response.status === 200) {
         const { accessToken, refreshToken } = response.data;
-
+  
         // save access_token in session storage
         sessionStorage.setItem('access_token', accessToken);
         sessionStorage.setItem('refresh_token', refreshToken);
-
+  
         // redirect or perform any other action upon successful login
         window.location.href = '/AccountSetup'; // change the URL to your desired route
       } else {
         const errorResponse = response.data ? response.data : 'An unknown error occurred';
         console.error('Registration error:', errorResponse);
+  
+        if (response.status === 409) {
+          // this indicates email is already registered
+          setRegistrationError('Email is already registered. Please use a different email');
+        } else {
+          console.error('Registration error:', errorResponse);
+        }
       }
     } catch (error) {
       console.error('An error occurred during registration:', error);
     }
   };
+  
 
   return (
     <>
@@ -99,6 +121,32 @@ const UserRegistration = ({ showRegistrationModal, closeRegistrationModal }) => 
                 )}
               </div>
 
+              {/* confirm password input*/}
+              <div className="mb-3">
+                  <label htmlFor="confirmPassword" className="form-label">
+                    Confirm Password
+                  </label>
+              <input 
+                type="password"
+                className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+                {...register('confirmPassword', {
+                  required: 'Required',
+                  validate: (value) => value === watch('password') || 'Passwords do not match'
+                })}
+              />
+              {errors.confirmPassword && (
+                <div className="invalid-feedback">
+                  {errors.confirmPassword.message}
+                </div>
+              )}
+              </div>
+
+                {/* Display Registration Error */}
+                {registrationError && (
+                  <div className="invalid-feedback" role="alert">
+                    {registrationError}
+                  </div>
+                )}
               {/* Register Button */}
               <button type="submit" className="btn btn-primary">
                 Register

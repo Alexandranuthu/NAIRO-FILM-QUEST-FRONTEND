@@ -1,4 +1,3 @@
-// Films.js
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./NairoFilmQuest.css";
@@ -10,17 +9,24 @@ const Films = () => {
     // Fetch films based on the search term
     const fetchFilms = async () => {
       try {
-        const url = `http://localhost:4000/getFilms`;
-        const response = await fetch(url);
+        const accessToken = sessionStorage.getItem('access_token');
+        const url = 'http://localhost:4000/getFilms';
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
         const json = await response.json();
         setFilmList(json.data);
       } catch (error) {
         console.error('Error fetching films:', error);
       }
     };
-
+  
     fetchFilms();
   }, []);
+  
 
   return (
     <>

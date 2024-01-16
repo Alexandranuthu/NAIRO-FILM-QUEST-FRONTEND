@@ -32,9 +32,9 @@ function App() {
             backgroundImage: `url('images/i am samuel.webp')`
           }}
         >
-          <div className="content-container">
+          {/* <div className="content-container">
             <Navbar />
-          </div>
+          </div> */}
           {/* TAGLINE FOR NFQ */}
           <div className='tagline'>
             <h1>Lights.</h1>
@@ -51,7 +51,7 @@ function App() {
             </Modal>
             {/*Login Modal*/}
             <Modal isOpen={showLoginModal} onRequestClose={closeLoginModal}>
-              <Login showRegistration={showLoginModal} closeModal={closeLoginModal} />
+              <Login showRegistration={showLoginModal} closeLoginModal={closeLoginModal} />
             </Modal> 
           </div>
         </div>

@@ -44,7 +44,10 @@
 }
 
 .navbar-start li:hover {
-  color: green;
+  color: gold;
+}
+Link:hover{
+  color: gold;
 }
 .navbar-end{
   display: flex;

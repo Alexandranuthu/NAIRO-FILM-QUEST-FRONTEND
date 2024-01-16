@@ -1,5 +1,6 @@
 import React, {createContext, useReducer, useEffect} from 'react';
-import AppReducer from "./AppReducer"
+import AppReducer from "./AppReducer";
+import axios from 'axios';
 //intial state
 const initialState = {
     watchlist: localStorage.getItem('watchlist') ? JSON.parse(localStorage.getItem('watchlist'))
@@ -22,8 +23,14 @@ export const GlobalProvider = (props) => {
     }, [state])
 
     //actions 
-    const addMovieToWatchlist = (film) => {
-        dispatch({type: "ADD_MOVIE_TO_WATCHLIST", payload: film})
+    const addMovieToWatchlist = async (filmId) => {
+        try{
+            const response = await axios.post('http://localhost:4000/addMovieToWatchlist', {filmId});
+            console.log(response.data);
+        }catch(error) {
+            console.log('error adding movie to watchlist', error);
+        }
+        dispatch({type: "ADD_MOVIE_TO_WATCHLIST", payload: filmId})
     }
 
     return (

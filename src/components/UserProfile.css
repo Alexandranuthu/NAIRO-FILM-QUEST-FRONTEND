@@ -1,0 +1,127 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
+.Profile-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-profile {
+    box-sizing: border-box;
+    width: 80%; 
+    height: 90%;
+    padding: 20px; 
+    border: 2px solid #333; 
+    text-align: center;
+    justify-content: center;
+    background-color: #EA0085;
+    display: flex; 
+    flex-direction: column; 
+}
+
+.input{
+    width: 200px;
+    height: 40px;
+    border: none;
+}
+.Username{
+    display: flex;
+    flex-direction: column;
+}
+ul{
+    list-style: none;
+}
+
+/* UserProfile.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  .nav-item {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .nav-item::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: transparent;
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .nav-item.active::after {
+    width: 100%;
+    background-color: gold;
+  }
+  
+  .nav-item:hover::after {
+    width: 100%;
+    background-color: pink;
+  }
+
+  /* UserProfile.css */
+
+.Username {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left) */
+}
+
+.Username label {
+  margin-bottom: 5px; /* Add some spacing between label and input */
+}
+
+/* Apply similar styling for other sections */
+.Email,
+.Location,
+.Bio,
+.Pronouns {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Add styles for other labels if needed */
+.Email label,
+.Location label,
+.Bio label,
+.Pronouns label {
+  margin-bottom: 5px;
+}
+.Bio textarea{
+  background-color: transparent;
+  border: 1px solid gold;
+}
+.pronouns{
+  width: 200px;
+  height: 40px;
+}
+  
+.avatar-container {
+  width: 100px; /* Adjust the size of the circle as needed */
+  height: 100px; /* Should be the same as width for a perfect circle */
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

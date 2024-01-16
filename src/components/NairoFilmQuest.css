@@ -114,26 +114,26 @@ body{
   gap: 30px;
   width: 300px;
   opacity: 0.8;
-  cursor: pointer; /* Corrected class name and added cursor property */
-  margin: 10px; /* Adjust margin as needed */
-  transition: opacity 0.3s; /* Add transition for opacity change */
+  cursor: pointer;
+  margin: 10px; 
+  transition: opacity 0.3s; 
 }
 .film-item{
-    position: relative; /* Ensure relative positioning for absolute child elements */
+    position: relative; 
     border-radius: 10px;
-    backdrop-filter: blur(4px); /* Use backdrop-filter for blur effect */
+    backdrop-filter: blur(4px);
     border: 2px solid transparent;
     border-width: 10px;
     color: white;
     align-items: center;
-    overflow: hidden; /* Ensure border transition covers the whole container */
+    overflow: hidden; 
   transition: transform 0.3s;
 }
 .film-item::before {
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: 10px; /* Same border-radius as parent for rounded corners */
+    border-radius: 10px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,8 +153,9 @@ body{
     color: rgb(255 255 255 / var(--tw-text-opacity));
     text-shadow: 0 2px 4px rgba(0, 0, 0, 1);
     z-index: 1;
-    text-align: left; /* Align text to the left */
-    margin-top: 10px; /* Add margin as needed */
+    text-align: left; 
+    margin-top: 10px; 
+    justify-content: center;
   }
   .release-year{
     font-size: 0.75rem;
@@ -172,8 +173,9 @@ body{
     transition: border 0.3s;
   }
 .image-container{
-    height: 80vh; 
+    height: 95vh; 
     overflow: hidden; 
+    width: 100%;
 }
 .image-container img {
     width: 100%; 
@@ -195,10 +197,54 @@ body{
 .trailers{
     border: none;
     width: 200px;
-    height: 50px;
+    height: 45px;
     font-weight: 700;
     background-color: #EA0085;
     border-radius: 30px;
 }
 
 
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+    .content img {
+        padding: 10px;
+    }
+
+    .info {
+        left: 5%;
+        bottom: 5%;
+        width: 90%;
+    }
+
+    .custom-arrow {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .custom-prev-arrow,
+    .custom-next-arrow {
+        left: 5px;
+        right: 5px;
+    }
+
+    .film-container {
+        width: 90%;
+        padding: 5%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        /* Adjust styles for smaller screens */
+        padding: 10px; /* Example: Add padding to give more space */
+    }
+}
+
+/* Responsive styles for screens with a maximum width of 480px */
+@media screen and (max-width: 480px) {
+    .content {
+        /* Further adjustments for smaller screens */
+        padding: 5px;
+        /* Adjust font sizes, spacing, or other styles as needed */
+    }
+}

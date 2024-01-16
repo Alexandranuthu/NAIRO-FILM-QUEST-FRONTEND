@@ -7,13 +7,19 @@ const FilmCard = () => {
   useEffect(() => {
     const fetchFilms = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/getFilm");
+        const accessToken = sessionStorage.getItem('access_token');
+        const response = await axios.get('http://localhost:4000/getFilm', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
         setFilms(response.data);
       } catch (error) {
-        console.error("Error fetching films:", error);
+        console.error('Error fetching films:', error);
       }
     };
-
+  
     fetchFilms();
   }, []);
 

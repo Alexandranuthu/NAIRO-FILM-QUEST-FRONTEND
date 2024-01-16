@@ -16,8 +16,16 @@ const FeaturedContent = () => {
     useEffect(() => {
         const fetchFilms = async () => {
             try {
+                const accessToken = sessionStorage.getItem('access_token');
                 const url = "http://localhost:4000/getFilms";
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    method: 'GET', 
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+        
                 const json = await response.json();
                 setFilmList(json.data);
             } catch (error) {

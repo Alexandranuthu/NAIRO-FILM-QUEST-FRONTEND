@@ -1,0 +1,41 @@
+/* Review.css */
+.review-container {
+    border: 2px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    
+    transition: background-color 0.3s ease; /* Add a transition for smooth color change */
+  }
+  
+ /* Review.css */
+.heart-icon {
+    cursor: pointer;
+  }
+  
+  .heart-icon.liked {
+    fill: pink; /* Change the color to the desired pink color */
+  }
+  
+  
+  .review-content {
+    margin-bottom: 10px;
+  }
+  
+  .review-details {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer; /* Add pointer cursor to indicate it's clickable */
+  }
+  
+  .review-details span {
+    display: flex;
+    align-items: center;
+  }
+  
+  .CiHeart {
+    margin-left: 5px;
+  }
+  

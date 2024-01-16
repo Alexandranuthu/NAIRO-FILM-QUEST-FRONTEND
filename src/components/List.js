@@ -7,7 +7,15 @@ const List = () => {
     useEffect(() => {
         const fetchLists = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/getLists");
+                const accessToken = sessionStorage.getItem('access_token');
+                const response = await axios.get("http://localhost:4000/getLists",
+                {
+                    headers: { 
+                        Authorization: `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+                );
                 setList(response.data.data);
             } catch (error) {
                 console.error('Error fetching Lists:', error);
@@ -31,7 +39,7 @@ const List = () => {
                             <li key={film._id}>
                                 <img src={`http://localhost:3000${film.posterImagePath}`} alt={`Poster for ${film.title}`} />
                                 <p>Title: {film.title}</p>
-                                <p>Genres: {film.genre.map(g => g.name).join(', ')}</p>
+                                {/* <p>Genres: {film.genre.map(g => g.name).join(', ')}</p> */}
                                 {/* Add other film details */}
                             </li>
                         ))}
